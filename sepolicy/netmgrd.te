@@ -1,6 +1,3 @@
-type netmgrd, domain, coredomain;
-type netmgrd_exec, system_file_type, exec_type, file_type;
-
 init_daemon_domain(netmgrd)
 
 qmux_socket(netmgrd)
