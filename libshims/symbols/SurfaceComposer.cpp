@@ -29,6 +29,7 @@ namespace android
     /* sp<IBinder> BpSurfaceComposer::getBuiltInDisplay */
     extern "C" void* _ZN7android21SurfaceComposerClient17getBuiltInDisplayDisabledEi(long id)
     {
+        (void)id;
         unsigned long long displayId = _ZN7android21SurfaceComposerClient20getInternalDisplayIdEv();
         return _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(displayId);
     }
