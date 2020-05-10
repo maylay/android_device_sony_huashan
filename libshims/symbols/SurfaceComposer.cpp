@@ -20,17 +20,12 @@
 
 namespace android
 {
-    /* std::optional<PhysicalDisplayId> BpSurfaceComposer::getInternalDisplayId */
-    extern "C" unsigned long long _ZN7android21SurfaceComposerClient20getInternalDisplayIdEv();
+    /* sp<IBinder> SurfaceComposerClient::getPhysicalDisplayToken(PhysicalDisplayId displayId) */
+    extern "C" void* _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(uint64_t displayId);
 
-    /* sp<IBinder> BpSurfaceComposer::getPhysicalDisplayToken */
-    extern "C" void* _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(unsigned long long displayId);
-
-    /* sp<IBinder> BpSurfaceComposer::getBuiltInDisplay */
-    extern "C" void* _ZN7android21SurfaceComposerClient17getBuiltInDisplayDisabledEi(long id)
+    /* sp<IBinder> SurfaceComposerClient::getBuiltInDisplay(int32_t id) */
+    extern "C" void* _ZN7android21SurfaceComposerClient17getBuiltInDisplayEi(int32_t id)
     {
-        (void)id;
-        unsigned long long displayId = _ZN7android21SurfaceComposerClient20getInternalDisplayIdEv();
-        return _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(displayId);
+        return _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy((uint64_t)id);
     }
 };
