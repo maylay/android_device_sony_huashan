@@ -20,6 +20,7 @@
 /dev/smdcntl[0-7]                                                                 u:object_r:radio_device:s0
 ###/dev/smem_log                                                                     u:object_r:shared_log_device:s0 smem_log_device
 /dev/socket/tad                                                                   u:object_r:tad_socket:s0
+/dev/stune(/.*)?                                                                  u:object_r:cgroup:s0
 ###/dev/wcnss_wlan                                                                   u:object_r:wlan_device:s0 wcnss_device
 
 # /system
