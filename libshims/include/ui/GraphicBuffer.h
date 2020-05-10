@@ -97,6 +97,14 @@ public:
 
     status_t lock(uint32_t inUsage, void** vaddr);
     status_t lock(uint32_t inUsage, const Rect& rect, void** vaddr);
+
+    // For the following two lock functions, if bytesPerStride or bytesPerPixel
+    // are unknown or variable, -1 will be returned
+    status_t lock(uint32_t inUsage, void** vaddr, int32_t* outBytesPerPixel = nullptr,
+                  int32_t* outBytesPerStride = nullptr);
+    status_t lock(uint32_t inUsage, const Rect& rect, void** vaddr,
+                  int32_t* outBytesPerPixel = nullptr, int32_t* outBytesPerStride = nullptr);
+
     // For HAL_PIXEL_FORMAT_YCbCr_420_888
     status_t lockYCbCr(uint32_t inUsage, android_ycbcr *ycbcr);
     status_t lockYCbCr(uint32_t inUsage, const Rect& rect,

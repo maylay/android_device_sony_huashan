@@ -75,6 +75,13 @@ status_t GraphicBufferMapper::unregisterBuffer(buffer_handle_t handle)
 status_t GraphicBufferMapper::lock(buffer_handle_t handle,
         int usage, const Rect& bounds, void** vaddr)
 {
+    return lock(handle, usage, bounds, vaddr, nullptr, nullptr);
+}
+
+status_t GraphicBufferMapper::lock(buffer_handle_t handle,
+        int usage, const Rect& bounds, void** vaddr,
+        int32_t* outBytesPerPixel, int32_t* outBytesPerStride)
+{
     ATRACE_CALL();
     status_t err;
 

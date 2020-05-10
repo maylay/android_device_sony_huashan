@@ -165,12 +165,24 @@ status_t GraphicBuffer::initSize(uint32_t inWidth, uint32_t inHeight,
 
 status_t GraphicBuffer::lock(uint32_t inUsage, void** vaddr)
 {
+    return lock(inUsage, vaddr, nullptr, nullptr);
+}
+
+status_t GraphicBuffer::lock(uint32_t inUsage, void** vaddr, int32_t* outBytesPerPixel,
+                             int32_t* outBytesPerStride)
+{
     const Rect lockBounds(width, height);
-    status_t res = lock(inUsage, lockBounds, vaddr);
+    status_t res = lock(inUsage, lockBounds, vaddr, outBytesPerPixel, outBytesPerStride);
     return res;
 }
 
 status_t GraphicBuffer::lock(uint32_t inUsage, const Rect& rect, void** vaddr)
+{
+    return lock(inUsage, rect, vaddr, nullptr, nullptr);
+}
+
+status_t GraphicBuffer::lock(uint32_t inUsage, const Rect& rect, void** vaddr,
+                             int32_t* outBytesPerPixel, int32_t* outBytesPerStride)
 {
     if (rect.left < 0 || rect.right  > width ||
         rect.top  < 0 || rect.bottom > height) {
@@ -179,7 +191,10 @@ status_t GraphicBuffer::lock(uint32_t inUsage, const Rect& rect, void** vaddr)
                 width, height);
         return BAD_VALUE;
     }
-    status_t res = getBufferMapper().lock(handle, inUsage, rect, vaddr);
+
+    status_t res = getBufferMapper().lock(handle, inUsage, rect, vaddr, outBytesPerPixel,
+                                          outBytesPerStride);
+
     return res;
 }
 
